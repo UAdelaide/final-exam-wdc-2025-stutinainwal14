@@ -1,8 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <title>Express</title>
-    <link rel="stylesheet" href="/stylesheets/style.css">
+    <head>
+        <meta charset="UTF-8">
+        <title>Dog of the Day</title>
+        <script src="https://unpkg.com/vue@3"></script>
+        <style>
+          body {
+            background: linear-gradient(to right, red, blue, yellow, green);
+            font-family: 'Comic Sans MS';
+            font-size: 20px;
+            animation: flicker 0.1s infinite;
+          }
+
+          @keyframes flicker {
+            0% { background-color: red; }
+            25% { background-color: blue; }
+            50% { background-color: yellow; }
+            75% { background-color: green; }
+            100% { background-color: red; }
+          }
+
+          .dog-card {
+            border: 5px dashed pink;
+            padding: 50px;
+            margin: 30px;
+            text-align: center;
+          }
+
+          .tiny-button {
+            font-size: 8px;
+            padding: 2px;
+          }
+
+          .rainbow-text {
+            animation: rainbow 0.4s linear infinite;
+          }
+
+          @keyframes rainbow {
+            0% { color: red; }
+            25% { color: orange; }
+            50% { color: yellow; }
+            75% { color: green; }
+            100% { color: red; }
+          }
+        </style>
 </head>
 
 <body>
