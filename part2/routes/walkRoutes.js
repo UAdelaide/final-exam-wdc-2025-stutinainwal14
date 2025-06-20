@@ -3,14 +3,25 @@ const router = express.Router();
 const db = require('../models/db');
 
 // GET all walk requests (for walkers to view)
+// GET all walk requests (for walkers to view)
 router.get('/', async (req, res) => {
   try {
     const [rows] = await db.query(`
-      SELECT wr.*, d.name AS dog_name, d.size, u.username AS owner_name
+      SELECT
+        wr.request_id,
+        wr.requested_time,
+        wr.duration_minutes,
+        wr.status,
+        d.name AS dog_name,
+        d.size,
+        u.username AS owner_name,
+        CONCAT(l.location_name, ', ', l.city, ', ', l.state, ', ', l.country) AS location
       FROM WalkRequests wr
       JOIN Dogs d ON wr.dog_id = d.dog_id
       JOIN Users u ON d.owner_id = u.user_id
+      JOIN Locations l ON wr.location_id = l.location_id
       WHERE wr.status = 'open'
+      ORDER BY wr.request_id DESC
     `);
     res.json(rows);
   } catch (error) {
