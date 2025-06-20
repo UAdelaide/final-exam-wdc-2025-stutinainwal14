@@ -223,5 +223,40 @@ function logout() {
     });
   }
 
+  async function loadDogsWithPhotos() {
+    try {
+      const res = await fetch('/api/dogs');
+      const dogs = await res.json();
+
+      const tbody = document.getElementById('dogsBody');
+      tbody.innerHTML = '';
+
+      for (const dog of dogs) {
+        // Fetch a random dog photo from dogs.ceo API
+        const imgRes = await fetch('https://dog.ceo/api/breeds/image/random');
+        const imgData = await imgRes.json();
+
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${dog.dog_id}</td>
+          <td>${dog.dog_name}</td>
+          <td>${dog.size}</td>
+          <td>${dog.owner_id}</td>
+          <td><img src="${imgData.message}" alt="Dog Photo" style="width: 100px; height: auto;" /></td>
+        `;
+        tbody.appendChild(row);
+      }
+    } catch (err) {
+      console.error('Error loading dog data:', err);
+    }
+  }
+
+document.addEventListener('DOMContentLoaded', () => {
+    if (document.getElementById('dogsBody')) {
+      loadDogsWithPhotos();
+    }
+  });
+
+
 
 
