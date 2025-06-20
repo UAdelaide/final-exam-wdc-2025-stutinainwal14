@@ -52,7 +52,6 @@ router.post('/login', async (req, res) => {
     }
 
     const user = rows[0];
-    // In dev, plain-text match
     const isMatch = password === user.password_hash;
 
     if (!isMatch) {
