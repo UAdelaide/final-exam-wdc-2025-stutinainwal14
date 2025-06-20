@@ -67,15 +67,15 @@
         const error = ref('');
         let currentUserId = null;
 
-fetch('/api/users/me')
-  .then(res => {
-    if (!res.ok) window.location.href = '/';
-    return res.json();
-  })
-  .then(data => {
-    if (data.role !== 'walker') window.location.href = '/';
-    currentUserId = data.id;
-  })
+        fetch('/api/users/me')
+          .then(res => {
+            if (!res.ok) window.location.href = '/';
+            return res.json();
+          })
+          .then(data => {
+            if (data.role !== 'walker') window.location.href = '/';
+            currentUserId = data.id;
+          })
 
 
         async function loadWalkRequests() {
@@ -93,7 +93,7 @@ fetch('/api/users/me')
             const res = await fetch(`/api/walks/${requestId}/apply`, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ walker_id: user })
+              body: JSON.stringify({ walker_id: currentUserId })
             });
             const result = await res.json();
 
