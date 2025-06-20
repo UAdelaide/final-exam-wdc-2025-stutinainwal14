@@ -4,7 +4,7 @@ const { createApp } = Vue;
       data() {
         return {
           dogImage: ''
-        }
+        };
       },
       mounted() {
         this.getDog();
