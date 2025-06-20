@@ -66,6 +66,26 @@
   </div>
 
   <script>
+    // Check session on page load
+    fetch('/api/users/me')
+      .then(res => {
+        if (!res.ok) {
+          window.location.href = '/'; // Redirect to login
+        } else {
+          return res.json();
+        }
+      })
+      .then(data => {
+        if (data.role !== 'owner') {
+          window.location.href = '/'; // Redirect if not owner
+        }
+      })
+      .catch(() => {
+        window.location.href = '/'; // On error, also redirect
+      });
+  </script>
+
+  <script>
     const { createApp, ref, onMounted } = Vue;
 
     createApp({
