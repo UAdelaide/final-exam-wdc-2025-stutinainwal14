@@ -205,13 +205,17 @@ function login(){
 
 }
 
-function logout(){
+function logout() {
+    fetch('/api/users/logout', {
+      method: 'POST'
+    })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data.message);
+      window.location.href = '/'; // Redirect to login/home page
+    })
+    .catch(err => {
+      console.error('Logout failed:', err);
+    });
+  }
 
-    // Create AJAX Request
-    var xmlhttp = new XMLHttpRequest();
-
-    // Open connection to server & send the post data using a POST request
-    xmlhttp.open("POST", "/users/logout", true);
-    xmlhttp.send();
-
-}
