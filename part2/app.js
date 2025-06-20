@@ -10,9 +10,6 @@ app.use(session({
     saveUninitialized: false
   }));
 
-const authRouter = require('./routes/auth');
-app.use('/auth', authRouter);
-
 // Middleware
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '/public')));
@@ -20,7 +17,8 @@ app.use(express.static(path.join(__dirname, '/public')));
 // Routes
 const walkRoutes = require('./routes/walkRoutes');
 const userRoutes = require('./routes/userRoutes');
-
+const authRouter = require('./routes/auth');
+app.use('/auth', authRouter);
 app.use('/api/walks', walkRoutes);
 app.use('/api/users', userRoutes);
 
