@@ -36,8 +36,20 @@
             <input v-model="form.duration_minutes" type="number" class="form-control" required>
           </div>
           <div class="mb-3">
-            <label class="form-label">Location</label>
-            <input v-model="form.location" type="text" class="form-control" required>
+            <label class="form-label">Area</label>
+            <input v-model="form.area" type="text" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">City</label>
+            <input v-model="form.city" type="text" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">State</label>
+            <input v-model="form.state" type="text" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Country</label>
+            <input v-model="form.country" type="text" class="form-control" required>
           </div>
           <button type="submit" class="btn btn-success">Create Walk</button>
         </form>
