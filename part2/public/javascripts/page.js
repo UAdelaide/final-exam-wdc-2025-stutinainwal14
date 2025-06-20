@@ -223,7 +223,7 @@ function logout() {
     });
   }
 
-  async function loadDogsWithPhotos() {
+async function loadDogsWithPhotos() {
     try {
       const res = await fetch('/api/users/all-dogs');
       const dogs = await res.json();
