@@ -214,7 +214,7 @@ function logout() {
       console.log(data.message);
       window.location.href = '/'; // Redirect to login/home page
     })
-    .catch(err => {
+    .catch((err) => {
       console.error('Logout failed:', err);
     });
   }
