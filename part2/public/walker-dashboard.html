@@ -67,16 +67,18 @@
         const error = ref('');
         let currentUserId = null;
 
-        fetch('/api/users/me')
-          .then(res => {
-            if (!res.ok) window.location.href = '/';
-            return res.json();
-          })
-          .then(data => {
-            if (data.role !== 'walker') window.location.href = '/';
-            currentUserId = data.id;
-          })
-
+        async function getCurrentUser() {
+        try {
+          const res = await fetch('/api/users/me');
+          if (!res.ok) window.location.href = '/';
+          const data = await res.json();
+          if (data.role !== 'walker') window.location.href = '/';
+          return data.id;
+        } catch (err) {
+          console.error('Error fetching current user:', err);
+          window.location.href = '/';
+        }
+      }
 
         async function loadWalkRequests() {
           try {
