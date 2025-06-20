@@ -41,11 +41,10 @@ router.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
   try {
-    const [rows] = await connection.execute(
+    const [rows] = await db.query(
       'SELECT * FROM Users WHERE username = ?',
       [username]
     );
-    await connection.end();
 
     if (rows.length === 0) {
       return res.status(401).json({ error: 'Invalid username or password' });
@@ -70,5 +69,6 @@ router.post('/login', async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 });
+
 
 module.exports = router;
