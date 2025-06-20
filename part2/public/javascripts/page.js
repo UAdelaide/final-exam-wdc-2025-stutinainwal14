@@ -176,9 +176,11 @@ function downvote(index) {
 // Added login handler to page.js
 function login(){
 
+    // Attach event listener to login form
     document.getElementById('loginForm').addEventListener('submit', async function (e) {
         e.preventDefault();
 
+        // Get form values
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
 
