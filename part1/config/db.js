@@ -9,7 +9,7 @@ const dbConfig = {
 };
 
 function getConnection() {
-  return mysql.createConnection(dbConfig); // no need for await
+  return mysql.createConnection(dbConfig);
 }
 
 module.exports = getConnection;

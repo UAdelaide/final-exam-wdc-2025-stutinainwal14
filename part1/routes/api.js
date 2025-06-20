@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const getConnection = require('../config/db'); // importing DB helper
+const getConnection = require('../config/db');
 
 // api/dogs
 router.get('/dogs', async (req, res) => {
