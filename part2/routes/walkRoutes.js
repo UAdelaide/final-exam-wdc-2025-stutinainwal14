@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
         d.name AS dog_name,
         d.size,
         u.username AS owner_name,
-        CONCAT(l.location_name, ', l.city, ',  l.state, ', ', l.country) AS location
+        CONCAT(l.location_name, ', ', l.city, ', ', l.state, ', ', l.country) AS location
       FROM WalkRequests wr
       JOIN Dogs d ON wr.dog_id = d.dog_id
       JOIN Users u ON d.owner_id = u.user_id
