@@ -37,7 +37,7 @@ router.post('/', async (req, res) => {
   try {
     const [locationRows] = await db.query(`
       SELECT location_id FROM Locations
-      WHERE area_name = ? AND city = ? AND state = ? AND country = ?
+      WHERE location_name = ? AND city = ? AND state = ? AND country = ?
     `, [area, city, state, country]);
 
     let locationId;
@@ -47,7 +47,7 @@ router.post('/', async (req, res) => {
     } else {
       // insert the location
       const [locationResult] = await db.query(`
-        INSERT INTO Locations (area_name, city, state, country)
+        INSERT INTO Locations (location_name, city, state, country)
         VALUES (?, ?, ?, ?)
       `, [area, city, state, country]);
       locationId = locationResult.insertId;
