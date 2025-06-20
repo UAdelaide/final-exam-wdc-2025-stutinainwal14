@@ -93,13 +93,13 @@
         async function applyToWalk(requestId) {
         try {
           if (!currentUserId.value) {
-            currentUserId.value = await getCurrentUser(); // get user ID first
+            currentUserId.value = await getCurrentUser();
           }
 
           const res = await fetch(`/api/walks/${requestId}/apply`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ walker_id: currentUserId.value }) 
+            body: JSON.stringify({ walker_id: currentUserId.value })
           });
 
           const result = await res.json();
@@ -115,6 +115,7 @@
       }
 
         onMounted(() => {
+          currentUserId.value = await getCurrentUser();
           loadWalkRequests();
         });
 
