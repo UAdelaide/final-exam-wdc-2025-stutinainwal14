@@ -11,9 +11,13 @@ const { createApp } = Vue;
       },
       methods: {
         async getDog() {
-          const res = await fetch('https://dog.ceo/api/breeds/image/random');
-          const data = await res.json();
-          this.dogImage = data.message;
+          try {
+            const res = await fetch('https://dog.ceo/api/breeds/image/random');
+            const data = await res.json();
+            this.dogImage = data.message;
+          } catch (err) {
+            console.error("Error fetching dog image:", err);
+          }
         }
       }
     }).mount('#app');
