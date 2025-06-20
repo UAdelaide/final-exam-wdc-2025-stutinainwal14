@@ -225,7 +225,7 @@ function logout() {
 
   async function loadDogsWithPhotos() {
     try {
-      const res = await fetch('/api/users/dogs');
+      const res = await fetch('/api/users/all-dogs');
       const dogs = await res.json();
 
       const tbody = document.getElementById('dogsBody');
