@@ -118,6 +118,4 @@ router.get('/all-dogs', async (req, res) => {
   }
 });
 
-
-
 module.exports = router;
