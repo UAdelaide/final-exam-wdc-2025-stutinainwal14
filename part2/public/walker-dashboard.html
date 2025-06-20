@@ -91,23 +91,28 @@
         }
 
         async function applyToWalk(requestId) {
-          try {
-            const res = await fetch(`/api/walks/${requestId}/apply`, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ walker_id: currentUserId })
-            });
-            const result = await res.json();
-
-            if (!res.ok) throw new Error(result.error || 'Application failed');
-            message.value = result.message;
-            error.value = '';
-            await loadWalkRequests();
-          } catch (err) {
-            error.value = err.message;
-            message.value = '';
+        try {
+          if (!currentUserId.value) {
+            currentUserId.value = await getCurrentUser(); // get user ID first
           }
+
+          const res = await fetch(`/api/walks/${requestId}/apply`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ walker_id: currentUserId.value }) 
+          });
+
+          const result = await res.json();
+          if (!res.ok) throw new Error(result.error || 'Application failed');
+
+          message.value = result.message;
+          error.value = '';
+          await loadWalkRequests();
+        } catch (err) {
+          error.value = err.message;
+          message.value = '';
         }
+      }
 
         onMounted(() => {
           loadWalkRequests();
