@@ -52,8 +52,6 @@ router.post('/login', async (req, res) => {
 
     const user = rows[0];
     const isMatch = password === user.password_hash;
-    console.log('Input password:', password);
-    console.log('DB password_hash:', user.password_hash);
 
 
     if (!isMatch) {
