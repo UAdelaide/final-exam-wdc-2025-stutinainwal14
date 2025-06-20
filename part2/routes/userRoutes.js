@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const mysql = require('mysql2/promise');
 const db = require('../models/db');
 
 // GET all users (for admin/testing)
