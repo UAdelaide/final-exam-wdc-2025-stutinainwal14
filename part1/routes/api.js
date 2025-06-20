@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const getConnection = require('../config/db'); // importing DB helper
 
-//api/dogs
+// api/dogs
 router.get('/dogs', async (req, res) => {
   try {
     const connection = await getConnection();
@@ -19,7 +19,7 @@ router.get('/dogs', async (req, res) => {
   }
 });
 
-// Route: /api/walkrequests/open
+// /api/walkrequests/open
 router.get('/walkrequests/open', async (req, res) => {
   try {
     const connection = await getConnection();
@@ -40,7 +40,7 @@ router.get('/walkrequests/open', async (req, res) => {
   }
 });
 
-// Route: /api/walkers/summary
+// /api/walkers/summary
 router.get('/walkers/summary', async (req, res) => {
   try {
     const connection = await getConnection();
