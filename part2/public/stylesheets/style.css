@@ -154,17 +154,3 @@ textarea {
 section {
     display: none;
 }
-
-.logout-button {
-    background-color: transparent;
-    border: 2px solid red;
-    color: red;
-    padding: 6px 12px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-
-  .logout-button:hover {
-    background-color: red;
-    color: white;
-  }
