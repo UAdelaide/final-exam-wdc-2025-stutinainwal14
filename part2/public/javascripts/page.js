@@ -194,9 +194,9 @@ function login(){
 
         if (res.ok) {
           if (data.role === 'owner') {
-            window.location.href = '/owner-dashboard';
+            window.location.href = '/owner-dashboard.html';
           } else if (data.role === 'walker') {
-            window.location.href = '/walker-dashboard';
+            window.location.href = '/walker-dashboard.html';
           }
         } else {
           alert(data.error);
