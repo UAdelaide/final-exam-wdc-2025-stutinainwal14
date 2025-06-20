@@ -32,16 +32,36 @@ router.get('/', async (req, res) => {
 
 // POST a new walk request (from owner)
 router.post('/', async (req, res) => {
-  const { dog_id, requested_time, duration_minutes, location } = req.body;
+  const { dog_id, requested_time, duration_minutes, area, city, state, country } = req.body;
 
   try {
-    const [result] = await db.query(`
-      INSERT INTO WalkRequests (dog_id, requested_time, duration_minutes, location)
-      VALUES (?, ?, ?, ?)
-    `, [dog_id, requested_time, duration_minutes, location]);
+    const [locationRows] = await db.query(`
+      SELECT location_id FROM Locations
+      WHERE area_name = ? AND city = ? AND state = ? AND country = ?
+    `, [area, city, state, country]);
 
-    res.status(201).json({ message: 'Walk request created', request_id: result.insertId });
+    let locationId;
+
+    if (locationRows.length > 0) {
+      locationId = locationRows[0].location_id;
+    } else {
+      // insert the location
+      const [locationResult] = await db.query(`
+        INSERT INTO Locations (area_name, city, state, country)
+        VALUES (?, ?, ?, ?)
+      `, [area, city, state, country]);
+      locationId = locationResult.insertId;
+    }
+
+    const [walkResult] = await db.query(`
+      INSERT INTO WalkRequests (dog_id, requested_time, duration_minutes, location_id)
+      VALUES (?, ?, ?, ?)
+    `, [dog_id, requested_time, duration_minutes, locationId]);
+
+    res.status(201).json({ message: 'Walk request created', request_id: walkResult.insertId });
+
   } catch (error) {
+    console.error('Error inserting walk request:', error);
     res.status(500).json({ error: 'Failed to create walk request' });
   }
 });
