@@ -173,7 +173,7 @@ function downvote(index) {
     updatePosts();
 }
 
-
+// Added login handler to page.js
 function login(){
 
     document.getElementById('loginForm').addEventListener('submit', async function (e) {
