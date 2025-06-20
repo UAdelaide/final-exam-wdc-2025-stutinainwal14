@@ -33,6 +33,10 @@
         return {
           message: 'Welcome to the Dog Walking Service!'
         };
+      },
+      mounted() {
+        // Now safe to call login() once DOM is ready
+        login();
       }
     }).mount('#app');
   </script>
