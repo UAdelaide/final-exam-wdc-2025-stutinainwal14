@@ -10,6 +10,9 @@ app.use(session({
     saveUninitialized: false
   }));
 
+const authRouter = require('./routes/auth');
+app.use('/auth', authRouter);
+
 // Middleware
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '/public')));
