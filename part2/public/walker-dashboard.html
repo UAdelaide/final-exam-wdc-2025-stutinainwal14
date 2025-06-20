@@ -114,11 +114,11 @@
         }
       }
 
-        onMounted(() => {
-          currentUserId.value = await getCurrentUser();
-          await loadWalkRequests();
-        });
-
+      onMounted(async () => {
+        currentUserId.value = await getCurrentUser();
+        await loadWalkRequests();
+      });
+      
         return {
           walks,
           message,
