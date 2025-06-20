@@ -104,4 +104,20 @@ router.get('/my-dogs', async (req, res) => {
   }
 });
 
+// api/dogs
+router.get('/dogs', async (req, res) => {
+  try {
+    const connection = await getConnection();
+    const [rows] = await connection.execute(`
+      SELECT d.dog_id, d.name AS dog_name, d.size, d.owner_id
+      FROM Dogs d
+    `);
+    res.json(rows);
+    await connection.end();
+  } catch (error) {
+    console.error('Error in /api/dogs:', error);
+    res.status(500).json({ error: 'Failed to fetch dogs' });
+  }
+});
+
 module.exports = router;
