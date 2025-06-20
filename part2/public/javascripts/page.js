@@ -184,6 +184,7 @@ function login(){
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
 
+         // Send login request to server
         const res = await fetch('api/users/login', {
           method: 'POST',
           headers: {
@@ -194,6 +195,7 @@ function login(){
 
         const data = await res.json();
 
+        // Redirect based on role
         if (res.ok) {
           if (data.role === 'owner') {
             window.location.href = '/owner-dashboard.html';
