@@ -21,7 +21,7 @@
     <a href="walker-dashboard.html" class="btn btn-outline-success">Walker Dashboard</a>
   </div>
 
-
+  <script src="./javascripts/page.js"></script>
   <script>
     const { createApp } = Vue;
     createApp({
@@ -29,11 +29,13 @@
         return {
           message: 'Welcome to the Dog Walking Service!'
         };
+      },
+      mounted() {
+        login();
       }
     }).mount('#app');
   </script>
 
-  <script src="./javascripts/page.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
