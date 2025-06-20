@@ -41,7 +41,6 @@ router.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
   try {
-    const connection = await mysql.createConnection(dbConfig);
     const [rows] = await connection.execute(
       'SELECT * FROM Users WHERE username = ?',
       [username]
