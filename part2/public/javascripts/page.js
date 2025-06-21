@@ -209,6 +209,7 @@ function login(){
 
 }
 
+// Logout function
 function logout() {
     fetch('/api/users/logout', {
       method: 'POST'
