@@ -51,6 +51,8 @@ router.post('/login', async (req, res) => {
     }
 
     const user = rows[0];
+
+    // Simple password check
     const isMatch = password === user.password_hash;
 
 
@@ -58,6 +60,7 @@ router.post('/login', async (req, res) => {
       return res.status(401).json({ error: 'Invalid username or password' });
     }
 
+    // Store session
     req.session.user = {
       id: user.user_id,
       username: user.username,
