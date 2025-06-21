@@ -250,6 +250,7 @@ async function loadDogsWithPhotos() {
       console.error('Error loading dog data:', err);
     }
   }
+// Run login handler on page load
 document.addEventListener('DOMContentLoaded', login);
 document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('dogsBody')) {
