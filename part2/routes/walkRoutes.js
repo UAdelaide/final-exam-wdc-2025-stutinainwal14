@@ -110,6 +110,7 @@ router.get('/my-walks', async (req, res) => {
       FROM WalkRequests wr
       JOIN Dogs d ON wr.dog_id = d.dog_id
       JOIN Locations l ON wr.location_id = l.location_id
+      WHERE wr.status = 'open'
       WHERE d.owner_id = ?
       ORDER BY wr.request_id DESC
     `, [ownerId]);
