@@ -146,7 +146,7 @@
             const localDate = new Date(form.value.requested_time);
             const formatted = localDate.toISOString().slice(0, 19).replace('T', ' ');
             const bodyData = { ...form.value, requested_time: formatted };
-            const res = await fetch('/api/walks/my-walks', {
+            const res = await fetch('/api/walks', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify(bodyData)
