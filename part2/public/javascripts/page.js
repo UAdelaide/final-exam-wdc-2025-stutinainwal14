@@ -208,6 +208,8 @@ function login(){
       });
 
 }
+// Run login handler on page load
+document.addEventListener('DOMContentLoaded', login);
 
 // Logout function
 function logout() {
@@ -223,6 +225,8 @@ function logout() {
       console.error('Logout failed:', err);
     });
   }
+  // Run login handler on page load
+document.addEventListener('DOMContentLoaded', logout);
 
 async function loadDogsWithPhotos() {
     try {
@@ -251,8 +255,7 @@ async function loadDogsWithPhotos() {
       console.error('Error loading dog data:', err);
     }
   }
-// Run login handler on page load
-document.addEventListener('DOMContentLoaded', login);
+
 document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('dogsBody')) {
       loadDogsWithPhotos();
