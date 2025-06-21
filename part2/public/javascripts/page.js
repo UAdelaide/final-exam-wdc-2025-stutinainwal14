@@ -225,8 +225,6 @@ function logout() {
       console.error('Logout failed:', err);
     });
   }
-  // Run login handler on page load
-document.addEventListener('DOMContentLoaded', logout);
 
 async function loadDogsWithPhotos() {
     try {
